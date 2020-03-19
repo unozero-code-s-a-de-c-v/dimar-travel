@@ -21,5 +21,6 @@ context('Window', () => {
       cy.contains("Nuestros Servicios")
       cy.get(':nth-child(4) > .rd-nav-link').click()
       cy.contains("Matriz")
+      cy.screenshot()
   })
 })
