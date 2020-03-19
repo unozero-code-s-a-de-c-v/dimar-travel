@@ -1,0 +1,29 @@
+{
+  "name": "dimar-travel",
+  "version": "1.0.0",
+  "description": "Sitio Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "server": "http-server public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unozerocode/dimar-travel.git"
+  },
+  "keywords": [
+    "web"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unozerocode/dimar-travel/issues"
+  },
+  "homepage": "https://github.com/unozerocode/dimar-travel#readme",
+  "devDependencies": {
+    "cypress": "^4.2.0"
+  },
+  "dependencies": {
+    "http-server": "^0.12.1"
+  }
+}
