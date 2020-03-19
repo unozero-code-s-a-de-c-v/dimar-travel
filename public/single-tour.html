@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="es">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-5N768Z5');
+    </script>
+    <!-- End Google Tag Manager -->
+    <title>Información de Excursión</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/logos/logo.ico" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css"
+        href="//fonts.googleapis.com/css?family=Montserrat:400,500,600,700%7CPoppins:400%7CTeko:300,400">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/alert.min.css">
+    <script src="js/alert.all.min.js"></script>
+    <script src="chat/jquery-3.3.1.min.js"></script>
+    <script src="chat/btn.min.js"></script>
+    <script>
+     function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            vars[key] = value;
+        });
+        return vars;
+      }
+      function showTour(id){
+        fetch("data/servicios.json")
+        .then(response => response.json())
+        .then(json => getTours(json,id));
+        function getTours(result,id){
+          var exist = false;
+          var pos = null;
+          for (var i = 0; i < result.normal.length ; i++) {
+              if(result.normal[i].id == id){
+                exist = true;
+                pos = i;
+              }
+            }
+          if(id != null && id != "" && exist){
+                $('.tr').append('Excursión No. '+result.normal[pos].intro);
+                $('.pr').append('$ '+result.normal[pos].precio);
+                $('#dr').append(result.normal[pos].descripcion);
+                $('#ttl').append(result.normal[pos].titulo +'<br class="d-none d-lg-block"><span></span>');
+                $( "#amg" ).attr( "href", "images/"+result.normal[pos].image1 );
+                $( "#imr" ).attr( "style", "background-image: url(images/breadcrumbs-bg.jpg);");
+                $( "#tmg" ).attr( "src", "images/"+result.normal[pos].image1 );
+                $( "#amg2" ).attr( "href", "images/"+result.normal[pos].image2 );
+                $( "#tmg2" ).attr( "src", "images/"+result.normal[pos].image2 );
+                $('#sld').append(result.normal[pos].salida);
+                $('#rtn').append(result.normal[pos].regreso);
+      
+            if(result.normal[pos].nota != "#"){
+                $('#nt').append(notes("Nota", result.normal[pos].nota));
+            }
+            if(result.normal[pos].incluye != "#"){
+                $('#nt').append(notes("Incluye", result.normal[pos].incluye));
+            }
+          }else{
+            location.href = "our-tours.html";
+          }
+         
+        }
+      }
+      function notes(titulo, descripcion){
+        var nota = (titulo=="Incluye") ? "¿Qué incluye?" : titulo
+        var text = ['<article class="card card-custom card-corporate">',
+                        '<div class="card-header" id="accordion2Heading'+titulo+'" role="tab">',
+                          '<div class="card-title"><a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#accordion2Collapse'+titulo+'" aria-controls="accordion2Collapse'+titulo+'">'+nota,
+                              '<div class="card-arrow"></div></a>',
+                          '</div>',
+                        '</div>',
+                        '<div class="collapse" id="accordion2Collapse'+titulo+'" role="tabpanel" aria-labelledby="accordion2Heading'+titulo+'">',
+                          '<div class="card-body">',
+                            '<p>'+descripcion+'</p>',
+                          '</div>',
+                       '</div>',
+                      '</article>'].join('');
+                      return text;
+        
+      }
+      showTour(getUrlVars()["t"]);
+   </script>
+    <script>
+    function reservar() {
+
+        let timerInterval
+        Swal.fire({
+            title: '¡Haz tu reservación!',
+            html: '<button id="book" onclick="sendw();" class="button button-icon button-icon-left button-primary button-pipaluk" ><span class="icon fa fa-whatsapp"></span>WhatsApp</button></br><button id="book" class="button button-icon button-icon-left button-primary button-pipaluk" onclick="sendm();"><span class="icon mdi mdi-facebook-messenger icon-xxs"></span>Messenger</button></br><a id="book" class="button button-icon button-icon-left button-primary button-pipaluk" href="mailto:viajesdimar@hotmail.com"><span class="icon fa fa-envelope"></span>Correo</a>',
+            showConfirmButton: false,
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Regresar',
+        })
+    }
+    </script>
+
+
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5N768Z5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <div class="preloader">
+        <div class="preloader-body">
+            <div class="cssload-container">
+                <div class="cssload-speeding-wheel"></div>
+            </div>
+            <p>Loading...</p>
+        </div>
+    </div>
+    <div class="page">
+        <!-- Page Header-->
+        <header class="section page-header">
+            <!-- RD Navbar-->
+            <div class="rd-navbar-wrap">
+                <nav class="rd-navbar rd-navbar-corporate" data-layout="rd-navbar-fixed"
+                    data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed"
+                    data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static"
+                    data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static"
+                    data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static"
+                    data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px"
+                    data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="106px" data-lg-stick-up="true"
+                    data-xl-stick-up="true" data-xxl-stick-up="true">
+                    <div class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1"
+                        data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
+                    <div class="rd-navbar-aside-outer">
+                        <div class="rd-navbar-aside p-0">
+                            <!-- RD Navbar Panel-->
+                            <div class="rd-navbar-panel">
+                                <!-- RD Navbar Toggle-->
+                                <button class="rd-navbar-toggle"
+                                    data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                                <!-- RD Navbar Brand-->
+                                <div class="rd-navbar-brand"><a class="brand" href="./"><img src="images/logos/logo-8.png"
+                                            alt="" width="auto" height="19" /></a></div>
+                            </div>
+                            <div class="rd-navbar-aside-right rd-navbar-collapse">
+                                <ul class="rd-navbar-corporate-contacts">
+                                    <li>
+                                        <div class="unit unit-spacing-xs">
+                                            <div class="unit-left"><span class="icon fa fa-phone"></span></div>
+                                            <div class="unit-body"><a class="link-phone"
+                                                    href="tel:+529545820259">954-582-0259</a></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="unit unit-spacing-xs">
+                                            <div class="unit-left"><span class="icon fa fa-phone"></span></div>
+                                            <div class="unit-body"><a class="link-phone"
+                                                    href="tel:+529545885374">954-588-5374</a></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rd-navbar-main-outer">
+                        <div class="rd-navbar-main">
+                            <div class="rd-navbar-nav-wrap">
+                                <ul class="list-inline list-inline-md rd-navbar-corporate-list-social">
+                                    <li><a class="icon fa fa-facebook" href="https://www.facebook.com/dimarmexico"></a>
+                                    </li>
+                                    <li><a class="icon fa fa-instagram"
+                                            href="https://www.instagram.com/dimarmexico/"></a></li>
+                                </ul>
+                                <!-- RD Navbar Nav-->
+                                <ul class="rd-navbar-nav">
+                                    <li class="rd-nav-item"><a class="rd-nav-link" href="./">Inicio</a>
+                                    </li>
+                                    <li class="rd-nav-item"><a class="rd-nav-link" href="about.html">Sobre Nosotros</a>
+
+                                    </li>
+                                    <li class="rd-nav-item"><a class="rd-nav-link" href="our-tours.html">Excursiones</a>
+                                        <!-- RD Navbar Dropdown-->
+
+                                    </li>
+
+                                    <li class="rd-nav-item"><a class="rd-nav-link" href="contact-us.html">Contáctanos</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- Breadcrumbs -->
+        <section class="breadcrumbs-custom-inset">
+            <div class="breadcrumbs-custom context-dark bg-overlay-46">
+              <div class="container">
+                <h2 class="breadcrumbs-custom-title tr"></h2>
+                <ul class="breadcrumbs-custom-path">
+                  <li><a href="./">Inicio</a></li>
+                  <li><a href="our-tours.html">Excursiones</a></li>
+                  <li class="active tr"></li>
+                </ul>
+              </div>
+              <div class="box-position" id="imr"></div>
+            </div>
+          </section>
+       
+          <section class="section section-sm section-first bg-default">
+            <div class="container">
+            
+              <div class="row row-50 justify-content-center">
+                <div class="col-md-6 col-lg-7">
+                  <div class="row row-30 row-lg-40" data-lightgallery="group">
+                    <div class="col-12">
+                      <div class="oh-desktop">
+                        <!-- Thumbnail Joan-->
+                        <article class="thumbnail thumbnail-joan wow slideInRight"><a class="thumbnail-joan-figure" id="amg"  data-lightgallery="item"><img id="tmg"  width="700" height="518"/></a>
+                          
+                        </article>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="oh-desktop">
+                       
+                        <article class="thumbnail thumbnail-joan wow slideInLeft"><a class="thumbnail-joan-figure"id="amg2" data-lightgallery="item"><img id="tmg2" width="700" height="518"/></a>
+                         
+                        </article>
+                      </div>
+                    </div>
+                   
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-5">
+                  <div class="single-project single-project-4 list list-description">
+                    <div class="single-tour-title">
+                      <h4 class="title-decoration-lines-bottom" id="ttl"></h4>
+                    </div>
+                    <div class="single-tour-price">
+                      <div class="product-big-price-wrap"><span class="product-big-price pr"></span></div>
+                    </div>
+                    <p class="text-gray-500" id="dr"></p>
+                    <div class="divider divider-30"></div>
+                    <ul class="list list-description d-inline-block d-md-block">
+                      <!--li><span>Lugar:</span><span>Mauritius</span></li-->
+                      <li><span class="icon mdi mdi-currency-usd"></span><span >Precio por persona:</span><span class="pr"> &nbsp; </span></li>
+                      <li><span class="icon mdi mdi-clock"></span><span>Salida:</span><span id="sld">&nbsp; </span></li>
+                      <li><span class="icon mdi mdi-clock"></span><span>Regreso:</span><span id="rtn">&nbsp; </span></li>
+                     
+                    </ul>
+                    <div class="row justify-content-center"><button id="book" class="button button-icon button-icon-left button-primary button-pipaluk" onclick="reservar();"><span class="icon mdi mdi-calendar-check"></span>Reservar</button></div>
+                    
+                    <div class="divider divider-30"></div>
+              
+                    <div class="container">
+                
+                <div class="row row-15 align-items-start card-group-custom card-group-corporate" id="accordion2" role="tablist" aria-multiselectable="false">
+                  <div class="col-12" id="nt">
+                
+                    </div>
+              </div>
+        
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        <!-- Accordion-->
+        <section class="section section-sm section-last bg-default text-md-left">
+            <div class="container justify-content-center">
+                <div class="row justify-content-center">
+                    <h3>Sección de preguntas</h3>
+                </div>
+                <!-- Bootstrap collapse-->
+                <div class="row row-15 align-items-start card-group-custom card-group-corporate" id="accordion1"
+                    role="tablist" aria-multiselectable="false">
+
+                    <div class="col-lg-6">
+                        <!-- Bootstrap card-->
+                        <article class="card card-custom card-corporate">
+                            <div class="card-header" id="accordion1Heading1" role="tab">
+                                <div class="card-title"><a class="collapsed" role="button" data-toggle="collapse"
+                                        data-parent="#accordion1" href="#accordion1Collapse1"
+                                        aria-controls="accordion1Collapse1">¿Cuáles son las Condiciones Generales?
+                                        <div class="card-arrow"></div></a>
+                                </div>
+                            </div>
+                            <div class="collapse" id="accordion1Collapse1" role="tabpanel"
+                                aria-labelledby="accordion1Heading1">
+                                <div class="card-body">
+                                    <span>Nuestros Tours Incluyen:</span>
+                                    <ul class="list-marked  list-marked-secondary ">
+                                        <li>Transportación terrestre</li>
+                                        <li>Transportación marítima, en los tours especificados</li>
+                                        <li>Recorridos a caballo (únicamente en el tour de Atotonilco)</li>
+                                        <li>Seguro de viajero (excepto en el recorrido a caballo)</li>
+                                        <li>Chofer-Guía en camionetas</li>
+                                        <li> Guía en grupos microbús y autobús</li>
+                                        <li>Serán realizados mínimo 4 personas</li>
+                                        <li>Niños de 4 a 9 años pagarán el 50% de la tarifa excepto en el TOUR 5 Y 6
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </article>
+                        <!-- Bootstrap card-->
+                        <article class="card card-custom card-corporate">
+                            <div class="card-header" id="accordion1Heading2" role="tab">
+                                <div class="card-title"><a class="collapsed" role="button" data-toggle="collapse"
+                                        data-parent="#accordion1" href="#accordion1Collapse2"
+                                        aria-controls="accordion1Collapse2">¿Cuáles son las Políticas de Cancelación?
+                                        <div class="card-arrow"></div></a>
+                                </div>
+                            </div>
+                            <div class="collapse" id="accordion1Collapse2" role="tabpanel"
+                                aria-labelledby="accordion1Heading2">
+                                <div class="card-body">
+
+                                    <ul class="list-marked  list-marked-secondary ">
+                                        <li>Cuando la cancelación se haga 12 horas antes de la salida tendrán derecho a
+                                            la devolución total del importe pagado.</li>
+                                        <li>Cuando se cancele una hora antes de la salida, tendrán derecho al 50% de
+                                            devolución.</li>
+                                        <li>Cuando se cancele después de la hora límite o no se presente el pasajero, no
+                                            tendrá derecho a ningún reembolso.</li>
+                                        <li>En la excursión a Huatulco, si por causa de fuerza mayor no se pudiera
+                                            realizar el recorrido por lancha especificado en este folleto, se efectuará
+                                            por vía terrestre.</li>
+
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </article>
+                        <!-- Bootstrap card-->
+
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- Bootstrap card-->
+                        <article class="card card-custom card-corporate">
+                            <div class="card-header" id="accordion1Heading4" role="tab">
+                                <div class="card-title"><a class="collapsed" role="button" data-toggle="collapse"
+                                        data-parent="#accordion1" href="#accordion1Collapse4"
+                                        aria-controls="accordion1Collapse4">¿Qué Responsabilidades tiene Dimar?
+                                        <div class="card-arrow"></div></a>
+                                </div>
+                            </div>
+                            <div class="collapse" id="accordion1Collapse4" role="tabpanel"
+                                aria-labelledby="accordion1Heading4">
+                                <div class="card-body">
+                                    <ul class="list-marked  list-marked-secondary ">
+                                        <span>La agencia de viajes organizadora de este (estos) servicio(s) Operadora de
+                                            Viajes "DIMAR" S.A. de C.V. </span>
+
+                                        <li>Declara explícitamente que actúa como intermediaria entre el usuario de este
+                                            (estos) servicio(s)por una parte y las entidades o personas llamadas a
+                                            proporcionar los servicios incluidos tales como empresas de transporte,
+                                            restaurantes, etc., por la otra. </li>
+
+                                        <li>Por lo tanto se compromete a solicitar los servicios especificados y de
+                                            acuerdo a la disponibilidad de los mismos a contratarlos por cuenta del
+                                            usuario. </li>
+
+                                        <li>Si por causa de fuerza mayor o casos fortuitos, los prestadores de los
+                                            servicios contratados no pudieran proporcionarlos parcial o totalmente, la
+                                            agencia de viajes organizadora sólo gestionará por cuenta del usuario el
+                                            reembolso del importe que proceda, con exclusión de cualquier otro
+                                            compromiso. </li>
+
+                                        <li>La Agencia de Viajes así mismo declina toda responsabilidad por daños,
+                                            heridas, accidentes, retrasos o irregularidades que durante la ejecución de
+                                            los servicios pudiera ocurrir al usuario que por mediación efectúa el viaje.
+                                            La agencia de viajes organizadora declina cualquier responsabilidad derivada
+                                            del incumplimiento por parte del usuario de los reglamentos, reglas o
+                                            condiciones establecidas por cada uno de los prestadores de los servicios
+                                            contratados. </li>
+
+                                        <li>Queda entendido y convenido que en el recorrido a caballo y el snorkel,
+                                            estas actividades son bajo responsabilidad del usuario y libera a la Agencia
+                                            de Viajes y prestadores de servicios de toda responsabilidad por cualquier
+                                            siniestro. </li>
+
+                                        <li>La Agencia de Viajes organizadora se reserva el derecho de modificar el
+                                            orden de los servicios indicados en el presente folleto, para un mejor
+                                            desarrollo de los mismos o por las causas que así lo justifiquen.</li>
+
+                                        <li>Los servicios se amparan en los términos de las leyes mexicanas aplicables y
+                                            que resulten de resolución dictada por autoridades competentes de la
+                                            República Mexicana. </li>
+
+                                        <li>Cuando la Agencia de Viajes sea quien cancele un servicio de cualquier
+                                            naturaleza, por causas ajenas al turista, estará obligada a reembolsarle la
+                                            totalidad de los anticipos o pagos que se hayan efectuado. Art. 20 del
+                                            Reglamento de Agencias de Viajes. </li>
+
+                                        <li>El hecho de que el usuario entregue un anticipo y/o pago por los servicios
+                                            que haya elegido, implica su aceptación de las condiciones y
+                                            responsabilidades contenidas en esta sección. </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="card card-custom card-corporate">
+                            <div class="card-header" id="accordion1Heading3" role="tab">
+                                <div class="card-title"><a class="collapsed" role="button" data-toggle="collapse"
+                                        data-parent="#accordion1" href="#accordion1Collapse3"
+                                        aria-controls="accordion1Collapse3">¿Los niños también pagan?
+                                        <div class="card-arrow"></div></a>
+                                </div>
+                            </div>
+                            <div class="collapse" id="accordion1Collapse3" role="tabpanel"
+                                aria-labelledby="accordion1Heading3">
+                                <div class="card-body">
+                                    <p>Si, los iños de 4 a 9 años pagarán el 50% de la tarifa excepto en el TOUR 5 Y 6.
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- Bootstrap card-->
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="section footer-corporate context-dark">
+            <div class="footer-corporate-inset">
+                <div class="container">
+                    <div class="row row-40 justify-content-lg-between">
+                        <div class="col-sm-6 col-md-12 col-lg-3 col-xl-4">
+                            <div class="oh-desktop">
+                                <div class="wow slideInRight" data-wow-delay="0s">
+                                    <h6 class="text-spacing-100 text-uppercase">Matriz</h6>
+                                    <ul class="footer-contacts d-inline-block d-sm-block">
+                                        <li>
+                                            <div class="unit">
+                                                <div class="unit-left"><span class="icon fa fa-phone"></span></div>
+                                                <div class="unit-body"><a class="link-phone"
+                                                        href="tel:+529545820259">954-582-0259</a></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="unit">
+                                                <div class="unit-left"><span class="icon fa fa-envelope"></span></div>
+                                                <div class="unit-body"><a class="link-aemail"
+                                                        href="mailto:viajesdimar@hotmail.com ">viajesdimar@hotmail.com
+                                                    </a></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="unit">
+                                                <div class="unit-left"><span class="icon fa fa-location-arrow"></span>
+                                                </div>
+                                                <div class="unit-body"><a class="link-location"
+                                                        href="https://g.page/dimartravel?share">Av. Alfonso Pérez Gasga
+                                                        905-B, Centro, 71980 Puerto Escondido, Oax. (Junto al Hotel Casa
+                                                        Blanca) </a></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-5 col-lg-3 col-xl-4">
+                            <div class="oh-desktop">
+                                <div class="wow slideInRight" data-wow-delay="0s">
+                                    <h6 class="text-spacing-100 text-uppercase">Sucursal</h6>
+                                    <ul class="footer-contacts d-inline-block d-sm-block">
+                                        <li>
+                                            <div class="unit">
+                                                <div class="unit-left"><span class="icon fa fa-phone"></span></div>
+                                                <div class="unit-body"><a class="link-phone"
+                                                        href="tel:+529545885374">954-588-5374</a></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="unit">
+                                                <div class="unit-left"><span class="icon fa fa-envelope"></span></div>
+                                                <div class="unit-body"><a class="link-aemail"
+                                                        href="mailto:operadoradimar@hotmail.com ">operadoradimar@hotmail.com
+                                                    </a></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="unit">
+                                                <div class="unit-left"><span class="icon fa fa-location-arrow"></span>
+                                                </div>
+                                                <div class="unit-body"><a class="link-location"
+                                                        href="https://g.page/dimarzicatela?share"> Calle del Morro SN en
+                                                        Zicatela, </br>Centro, 71988 Puerto Escondido, Oax.
+                                                        </br>(Entrada a Bungalows Puerta del Sol)</a></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-11 col-md-7 col-lg-5 col-xl-4">
+                            <div class="oh-desktop">
+                                <div class="wow slideInLeft" data-wow-delay="0s">
+                                    <h6 class="text-spacing-100 text-uppercase">Acceso rápido</h6>
+                                    <ul
+                                        class="row-6 list-0 list-marked list-marked-md list-marked-secondary list-custom-2">
+                                        <li><a href="./">Inicio</a></li>
+                                        <li><a href="our-tours.html">Excursiones</a></li>
+                                        <li><a href="about.html">Sobre Dimar</a></li>
+                                        <li><a href="contact-us.html">Contáctanos</a></li>
+                                    </ul>
+                                    <div class="group-md group-middle justify-content-sm-start"><a
+                                            class="button button-lg button-primary button-ujarak"
+                                            href="contact-us.html">Contáctanos</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-corporate-bottom-panel">
+                <div class="container">
+                    <div class="row justfy-content-xl-space-berween row-10 align-items-md-center2">
+                        <div class="col-sm-6 col-md-4 text-sm-right text-md-center">
+                            <div>
+                                <ul class="list-inline list-inline-sm footer-social-list-2">
+                                    <li><a class="icon fa fa-facebook" href="https://www.facebook.com/dimarmexico"></a>
+                                    </li>
+
+                                    <li><a class="icon fa fa-instagram"
+                                            href="https://www.instagram.com/dimarmexico/"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 order-sm-first">
+                            <!-- Rights-->
+                            <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span>
+                                <span>Operadora de Viajes Dimar</span>. Todos los derechos
+                                reservados<span>.</span><span> Desarrollado por <a
+                                        href="https://unozerocode.com/">UnoZero Code S.A. de C.V.</a></span>
+                            </p>
+                        </div>
+                        <div class="col-sm-6 col-md-4 text-md-right">
+                            <p class="rights"><a href="#">Políticas de Privacidad</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+    <!-- Javascript-->
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

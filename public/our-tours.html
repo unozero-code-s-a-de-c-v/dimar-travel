@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="es">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-5N768Z5');
+    </script>
+    <!-- End Google Tag Manager -->
+    <title>Excursiones</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+        content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/logos/logo.ico" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css"
+        href="//fonts.googleapis.com/css?family=Montserrat:400,500,600,700%7CPoppins:400%7CTeko:300,400">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+
+      fetch("data/servicios.json")
+      .then(response => response.json())
+      .then(json => getRooms(json));
+      function getRooms(result){
+        for (var i = 0; i < result.normal.length ; i++) {
+            var text = [' <div class="col-sm-12 col-md-12 wow fadeInRight"><article class="product-big">',
+                '<div class="unit flex-column flex-md-row align-items-md-stretch">',
+                '<div class="unit-left"><p class="product-big-figure" ><img src="images/'+result.normal[i].image+'" alt="" width="600" height="366"/></p></div>',
+                '<div class="unit-body">',
+                    '<div class="product-big-body">',
+                    '<h5 class="product-big-title"><p >'+result.normal[i].titulo+'</p></h5>',
+                    '<div class="divider divider-30"></div>',
+                    '<p class="product-big-text block-with-text">'+result.normal[i].descripcion+'</p><a href="single-tour.html?t='+result.normal[i].id+'"  class="button button-black-outline button-ujarak" >Mostrar más...</a>',
+                    '<div class="product-big-price-wrap"><span class="product-big-price">$'+result.normal[i].precio+'</span></div>',
+                    '<div class="product-big-num"><span class="product-big-price">No. '+result.normal[i].intro+'</span></div>',
+                    '</div>',
+                '</div>',
+                '</div>',
+            '</article>',
+            '</div>'].join('');
+            $('#tours').append(text);
+
+        }
+      }
+  
+    </script>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5N768Z5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <div class="preloader">
+        <div class="preloader-body">
+            <div class="cssload-container">
+                <div class="cssload-speeding-wheel"></div>
+            </div>
+            <p>Loading...</p>
+        </div>
+    </div>
+    <div class="page">
+        <!-- Page Header-->
+        <header class="section page-header">
+            <!-- RD Navbar-->
+            <div class="rd-navbar-wrap">
+                <nav class="rd-navbar rd-navbar-corporate" data-layout="rd-navbar-fixed"
+                    data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed"
+                    data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static"
+                    data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static"
+                    data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static"
+                    data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px"
+                    data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="106px" data-lg-stick-up="true"
+                    data-xl-stick-up="true" data-xxl-stick-up="true">
+                    <div class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1"
+                        data-rd-navbar-toggle=".rd-navbar-collapse"><span></span></div>
+                    <div class="rd-navbar-aside-outer">
+                        <div class="rd-navbar-aside p-0">
+                            <!-- RD Navbar Panel-->
+                            <div class="rd-navbar-panel">
+                                <!-- RD Navbar Toggle-->
+                                <button class="rd-navbar-toggle"
+                                    data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                                <!-- RD Navbar Brand-->
+                                <div class="rd-navbar-brand"><a class="brand" href="./"><img src="images/logos/logo-8.png"
+                                            alt="" width="auto" height="19" /></a></div>
+                            </div>
+                            <div class="rd-navbar-aside-right rd-navbar-collapse">
+                                <ul class="rd-navbar-corporate-contacts">
+                                    <li>
+                                        <div class="unit unit-spacing-xs">
+                                            <div class="unit-left"><span class="icon fa fa-phone"></span></div>
+                                            <div class="unit-body"><a class="link-phone"
+                                                    href="tel:+529545820259">954-582-0259</a></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="unit unit-spacing-xs">
+                                            <div class="unit-left"><span class="icon fa fa-phone"></span></div>
+                                            <div class="unit-body"><a class="link-phone"
+                                                    href="tel:+529545885374">954-588-5374</a></div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rd-navbar-main-outer">
+                        <div class="rd-navbar-main">
+                            <div class="rd-navbar-nav-wrap">
+                                <ul class="list-inline list-inline-md rd-navbar-corporate-list-social">
+                                    <li><a class="icon fa fa-facebook" href="https://www.facebook.com/dimarmexico"></a>
+                                    </li>
+                                    <li><a class="icon fa fa-instagram"
+                                            href="https://www.instagram.com/dimarmexico/"></a></li>
+
+
+                                </ul>
+                                <!-- RD Navbar Nav-->
+                                <ul class="rd-navbar-nav">
+                                    <li class="rd-nav-item "><a class="rd-nav-link" href="./">Inicio</a>
+                                    </li>
+                                    <li class="rd-nav-item"><a class="rd-nav-link" href="about.html">Sobre Nosotros</a>
+
+                                    </li>
+                                    <li class="rd-nav-item active"><a class="rd-nav-link"
+                                            href="our-tours.html">Excursiones</a>
+
+                                    </li>
+
+                                    <li class="rd-nav-item"><a class="rd-nav-link" href="contact-us.html">Contáctanos</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- Breadcrumbs -->
+        <section class="breadcrumbs-custom-inset">
+            <div class="breadcrumbs-custom context-dark bg-overlay-46">
+                <div class="container">
+                    <h2 class="breadcrumbs-custom-title">Nuestras Excursiones</h2>
+                    <ul class="breadcrumbs-custom-path">
+                        <li><a href="./">Inicio</a></li>
+                        <li class="active">Excursiones</li>
+                    </ul>
+                </div>
+                <div class="box-position" style="background-image: url(images/breadcrumbs-bg.jpg);"></div>
+            </div>
+        </section>
+        <section class="section section-xl bg-default">
+            <div class="container">
+                <div class="row-sm row-40 row-md-50 justify-content-center" id="tours">
+                    
+
+                </div>
+            </div>
+        </section>
+        <!-- Page Footer-->
+        <footer class="section footer-corporate context-dark">
+            <div class="footer-corporate-inset">
+                <div class="container">
+                    <div class="row row-40 justify-content-lg-between">
+                        <div class="col-sm-6 col-md-12 col-lg-3 col-xl-4">
+                            <div class="oh-desktop">
+                                <div class="wow slideInRight" data-wow-delay="0s">
+                                    <h6 class="text-spacing-100 text-uppercase">Matriz</h6>
+                                    <ul class="footer-contacts d-inline-block d-sm-block">
+                                        <li>
+                                            <div class="unit">
+                                                <div class="unit-left"><span class="icon fa fa-phone"></span></div>
+                                                <div class="unit-body"><a class="link-phone"
+                                                        href="tel:+529545820259">954-582-0259</a></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="unit">
+                                                <div class="unit-left"><span class="icon fa fa-envelope"></span></div>
+                                                <div class="unit-body"><a class="link-aemail"
+                                                        href="mailto:viajesdimar@hotmail.com ">viajesdimar@hotmail.com
+                                                    </a></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="unit">
+                                                <div class="unit-left"><span class="icon fa fa-location-arrow"></span>
+                                                </div>
+                                                <div class="unit-body"><a class="link-location"
+                                                        href="https://g.page/dimartravel?share">Av. Alfonso Pérez Gasga
+                                                        905-B, Centro, 71980 Puerto Escondido, Oax. (Junto al Hotel Casa
+                                                        Blanca) </a></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-5 col-lg-3 col-xl-4">
+                            <div class="oh-desktop">
+                                <div class="wow slideInRight" data-wow-delay="0s">
+                                    <h6 class="text-spacing-100 text-uppercase">Sucursal</h6>
+                                    <ul class="footer-contacts d-inline-block d-sm-block">
+                                        <li>
+                                            <div class="unit">
+                                                <div class="unit-left"><span class="icon fa fa-phone"></span></div>
+                                                <div class="unit-body"><a class="link-phone"
+                                                        href="tel:+529545885374">954-588-5374</a></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="unit">
+                                                <div class="unit-left"><span class="icon fa fa-envelope"></span></div>
+                                                <div class="unit-body"><a class="link-aemail"
+                                                        href="mailto:operadoradimar@hotmail.com ">operadoradimar@hotmail.com
+                                                    </a></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="unit">
+                                                <div class="unit-left"><span class="icon fa fa-location-arrow"></span>
+                                                </div>
+                                                <div class="unit-body"><a class="link-location"
+                                                        href="https://g.page/dimarzicatela?share"> Calle del Morro SN en
+                                                        Zicatela, </br>Centro, 71988 Puerto Escondido, Oax.
+                                                        </br>(Entrada a Bungalows Puerta del Sol)</a></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-11 col-md-7 col-lg-5 col-xl-4">
+                            <div class="oh-desktop">
+                                <div class="wow slideInLeft" data-wow-delay="0s">
+                                    <h6 class="text-spacing-100 text-uppercase">Acceso rápido</h6>
+                                    <ul
+                                        class="row-6 list-0 list-marked list-marked-md list-marked-secondary list-custom-2">
+                                        <li><a href="./">Inicio</a></li>
+                                        <li><a href="about.html">Sobre Dimar</a></li>
+                                        <li><a href="contact-us.html">Contáctanos</a></li>
+                                    </ul>
+                                    <div class="group-md group-middle justify-content-sm-start"><a
+                                            class="button button-lg button-primary button-ujarak"
+                                            href="contact-us.html">Contáctanos</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-corporate-bottom-panel">
+                <div class="container">
+                    <div class="row justfy-content-xl-space-berween row-10 align-items-md-center2">
+                        <div class="col-sm-6 col-md-4 text-sm-right text-md-center">
+                            <div>
+                                <ul class="list-inline list-inline-sm footer-social-list-2">
+                                    <li><a class="icon fa fa-facebook" href="https://www.facebook.com/dimarmexico"></a>
+                                    </li>
+
+                                    <li><a class="icon fa fa-instagram"
+                                            href="https://www.instagram.com/dimarmexico/"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 order-sm-first">
+                            <!-- Rights-->
+                            <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span>
+                                <span>Operadora de Viajes Dimar</span>. Todos los derechos
+                                reservados<span>.</span><span> Desarrollado por <a
+                                        href="https://unozerocode.com/">UnoZero Code S.A. de C.V.</a></span>
+                            </p>
+                        </div>
+                        <div class="col-sm-6 col-md-4 text-md-right">
+                            <p class="rights"><a href="#">Políticas de Privacidad</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+    <!-- Javascript-->
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
